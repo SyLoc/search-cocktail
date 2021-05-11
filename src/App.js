@@ -7,7 +7,6 @@ import About from './pages/About'
 import Home from './pages/Home'
 import Error from './pages/Error'
 import SingleCocktail from './pages/SingleCocktail'
-import Cart from './pages/Cart'
 import Login from './pages/Login'
 import User from './pages/User'
 
@@ -24,9 +23,6 @@ const App = () => {
         </Route>
         <Route  path='/user'>
           <User/>
-        </Route>
-        <Route  path='/cart'>
-          <Cart/>
         </Route>
         <Route  path='/login'>
           <Login/>

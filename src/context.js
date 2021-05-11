@@ -1,21 +1,11 @@
 import React, {useContext, useState, useEffect,useReducer} from 'react';
 import firebase from "./firebase";
-import reducer from "./reducer"
 
 const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
 const AppContext = React.createContext()
 
-const initialState = {
-  id:'',
-  name: '',
-  email: '',
-  googleId:'',
-  favorite: [],
-  password: ''
-}
 
 const AppProvider = ({children}) =>{
-  const [state, dispatch] = useReducer(reducer, initialState)
 
   const [loading, setLoading] = useState(false)
   const [cocktails, setCocktails] = useState([])
@@ -106,7 +96,6 @@ const AppProvider = ({children}) =>{
         setCheckLogin,
         user,
         setUser,
-        state,
         userInfo,
       }
     }>
