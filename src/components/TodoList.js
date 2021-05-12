@@ -15,6 +15,7 @@ import {FaRegEdit} from'react-icons/fa'
 const TodoList = () => {
   const [state, dispatch] = useReducer(reducer,initialState)
   const [name, setName] = useState('')
+  const addValue = React.useRef('')
 
   const handleSubmit = (e) =>{
     e.preventDefault();
@@ -46,6 +47,7 @@ const TodoList = () => {
 
   useEffect(() => {
     dispatch({type: 'LOADING_DATA'})
+    addValue.current.focus()
   }, []);
 
   useEffect(() => {
@@ -75,6 +77,7 @@ const TodoList = () => {
         <form onSubmit={handleSubmit}>
           <div>
             <input 
+              ref={addValue}
               type="text"
               value={name}
               placeholder='Enter todo...'

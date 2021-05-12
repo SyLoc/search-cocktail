@@ -2,7 +2,8 @@
 
 .section-center{
   background:  #ddf1f1;
-  margin: 2rem 35rem;
+  margin: 1rem auto;
+  max-width: 25rem;
   padding: 1.5rem 2rem;
   border: 3px solid #476a2e;
   border-radius: .25rem;
