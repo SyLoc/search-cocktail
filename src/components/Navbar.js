@@ -31,7 +31,7 @@ const Navbar = () => {
             <Link to='/about'>About</Link>
           </li>
           <li>
-            {checkLogin ? <Link style={{color:"#476a2e", fontWeight:600}} to='/user'>{user.name}</Link> : null} 
+            {checkLogin ? <Link style={{color:"red", fontWeight:600}} to='/user'>{user.name}</Link> : null} 
           </li>
           <li>
             {checkLogin ? <Link to='/' onClick={logOut} ><FiLogOut/></Link> : <Link to='/login' ><FiLogIn/></Link>}
