@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {GoogleLogin} from 'react-google-login'
 
 
-const FormLogin = ({Login,SignUp,error}) => {
+const FormLogin = ({Login,SignUp,error,refresh}) => {
   const [details, setDetails] = useState({name:'', email:'', password:'', googleId:'', loginByGoogle: false})
   const [signUp, setSignUp] = useState(false)
 
@@ -32,16 +32,16 @@ const FormLogin = ({Login,SignUp,error}) => {
         {
           signUp ? (<div className="form-group">
             <label htmlFor="name">Name: </label>
-            <input type="text" name="name" id="name" onChange={e => setDetails({...details, name: e.target.value})}/>
+            <input type="text" name="name" value={details.name} onChange={e => setDetails({...details, name: e.target.value})}/>
           </div>) : null
         }
         <div className="form-group">
           <label htmlFor="email">Email: </label>
-          <input type="email" name="email" id="email" onChange={e => setDetails({...details, email: e.target.value})} />
+          <input type="email" name="email" value={details.email} onChange={e => setDetails({...details, email: e.target.value})} />
         </div>
         <div className="form-group">
           <label htmlFor="password">Password: </label>
-          <input type="password" name="password" id="password" onChange={e => setDetails({...details, password: e.target.value})} />
+          <input type="password" name="password" value={details.password} onChange={e => setDetails({...details, password: e.target.value})} />
         </div>
         <input style={{marginRight:'1rem'}} type="submit" value={`${signUp ? 'SIGNUP' : 'LOGIN'}`} />
         <GoogleLogin
@@ -51,7 +51,9 @@ const FormLogin = ({Login,SignUp,error}) => {
         onFailure={responseGoogle}
         cookiePolicy={'single_host_origin'}
         />
-        <h3><button className='btn-login' type='button' onClick={()=>setSignUp(!signUp)}>{signUp ? 'LogIn ?': 'SignUp?'}</button></h3>
+        <br/>
+        <br/>
+        <button ref={refresh} className='btn-login' type='button' onClick={()=>setSignUp(!signUp)}>{signUp ? 'LogIn ?': 'SignUp?'}</button>
       </div>
     </form>
   );

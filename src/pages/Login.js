@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef} from 'react';
 import FormLogin from '../components/FormLogin'
 import '../components/FormLogin.css'
 import {useGlobalContext} from '../context'
@@ -10,6 +10,7 @@ import firebase from "../firebase";
 const Login = () => {
   const {user,setUser,checkLogin,setCheckLogin, userInfo} = useGlobalContext()
   const [error,setError] = useState("")
+  const refresh = useRef('')
 
   const ref = firebase.firestore().collection("users")
 
@@ -40,6 +41,7 @@ const Login = () => {
         }
         addUser(newUser)
         alert('Sign Up Success')
+        refresh.current.click()
       }
     }
   }
@@ -92,11 +94,9 @@ const Login = () => {
 
   return(
     <div  className="login">
-      {checkLogin ? <Redirect to='/'/> : <FormLogin Login={Login} SignUp={SignUp} error={error}/>}
+      {checkLogin ? <Redirect to='/'/> : <FormLogin refresh={refresh} Login={Login} SignUp={SignUp} error={error}/>}
     </div>
   );
 };
 
 export default Login
-
-

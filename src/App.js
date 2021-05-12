@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 //import component
 import Navbar from './components/Navbar'
 //import pages
@@ -10,7 +10,11 @@ import SingleCocktail from './pages/SingleCocktail'
 import Login from './pages/Login'
 import User from './pages/User'
 
+// global 
+import {useGlobalContext} from './context'
+
 const App = () => {
+  const {checkLogin} = useGlobalContext()
   return (
     <Router>
       <Navbar/>
@@ -21,8 +25,9 @@ const App = () => {
         <Route  path='/about'>
           <About/>
         </Route>
-        <Route  path='/user'>
-          <User/>
+        <Route  path='/user' render={() =>{
+          return checkLogin ? <User/> : <Redirect to='/login'/>
+        }} >
         </Route>
         <Route  path='/login'>
           <Login/>
